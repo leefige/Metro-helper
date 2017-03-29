@@ -5,7 +5,8 @@ Help u get high mark in Mini-metro
   
 ## drawpad：一个继承qwidget重写的画板
 ### signals:
-- mousePos: 发送鼠标左键单击位置
+- mouseClk(): 发送鼠标单击位置
+- mouseMov(): 鼠标移动时发射鼠标位置
 ### slots:
 - changeType(int): 改变绘制点的类型
   
