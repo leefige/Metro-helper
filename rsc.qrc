@@ -1,0 +1,7 @@
+<RCC>
+    <qresource prefix="/img">
+        <file alias="rect_pic">rsc/rect.PNG</file>
+        <file alias="tri_pic">rsc/tri.PNG</file>
+        <file alias="cir_pic">rsc/cir.PNG</file>
+    </qresource>
+</RCC>
