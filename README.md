@@ -1,7 +1,7 @@
 # Metro-helper
 Help u get high mark in Mini-metro
 
-> This a Qt project  
+> This is a Qt project  
   
 ## drawpad：一个继承qwidget重写的画板
 ### signals:
