@@ -14,6 +14,7 @@ public:
 protected:
     void paintEvent(QPaintEvent *e);
     void mousePressEvent(QMouseEvent *ev);
+    void mouseMoveEvent(QMouseEvent *ev);
     //void keyPressEvent(QKeyEvent *ek);
 
 private:
@@ -24,7 +25,8 @@ private:
     QImage* rect;
 
 signals:
-    void mousePos(QPoint p);
+    void mouseClk(QPoint p);
+    void mouseMov(QPoint p);
 
 public slots:
     void changeType(int st);

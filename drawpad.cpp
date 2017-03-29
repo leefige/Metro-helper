@@ -3,16 +3,13 @@
 
 #include <QPen>
 #include <QImage>
-#include <QPixmap>
-#include <QString>
 #include <QPoint>
 #include <QPainter>
-#include <QBrush>
 #include <QPalette>
-#include <QDebug>
 #include <QMouseEvent>
 #include <QKeyEvent>
 #include <QApplication>
+#include <QDebug>
 
 DrawPad::DrawPad(QWidget *parent) : QWidget(parent)
 {
@@ -24,9 +21,9 @@ DrawPad::DrawPad(QWidget *parent) : QWidget(parent)
     setMouseTracking(true);
     setPalette(QPalette(Qt::white));
     setAutoFillBackground(true);
-    setMinimumSize(800,600);
+    //setMinimumSize(800,600);
 
-    connect(this, SIGNAL(mousePos(QPoint)), ker, SLOT(pointSlot(QPoint)));
+    connect(this, SIGNAL(mouseClk(QPoint)), ker, SLOT(pointSlot(QPoint)));
     connect(ker, SIGNAL(readyPaint()), this, SLOT(update()));
 }
 
@@ -72,5 +69,13 @@ void DrawPad::mousePressEvent(QMouseEvent *ev)     //发送位置
     QPoint pos = ev->pos();
     int x = pos.x(), y = pos.y();
     qDebug()<<x<<y;
-    emit mousePos(pos);
+    emit mouseClk(pos);
+}
+
+void DrawPad::mouseMoveEvent(QMouseEvent *ev)
+{
+    QPoint pos = ev->pos();
+    int x = pos.x(), y = pos.y();
+    qDebug()<<x<<y;
+    emit mouseMov(pos);
 }

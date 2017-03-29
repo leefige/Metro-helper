@@ -7,6 +7,7 @@
 #include <QHBoxLayout>
 #include <QVBoxLayout>
 #include <QSignalMapper>
+#include <QLabel>
 
 namespace Ui {
 class MainWindow;
@@ -23,9 +24,13 @@ public:
 private:
     Ui::MainWindow *ui;
     DrawPad *pad;
+    QLabel *posLab;
     QHBoxLayout *mainLay;
     QVBoxLayout *rightLay;
     QSignalMapper *m;
+
+public slots:
+    void showMousePos(QPoint pos);
 };
 
 #endif // MAINWINDOW_H
