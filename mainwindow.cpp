@@ -6,11 +6,13 @@
 
 MainWindow::MainWindow(QWidget *parent) :
     QMainWindow(parent),
+    opacity(0.70),
     ui(new Ui::MainWindow)
 {
     ui->setupUi(this);
     setMouseTracking(true);
     setMinimumSize(400, 300);
+    setWindowOpacity(opacity);
     ui->statusBar->setStyleSheet("QStatusBar::item{border: 0px}");
 
     posLab = new QLabel(this);
@@ -21,6 +23,7 @@ MainWindow::MainWindow(QWidget *parent) :
     ui->statusBar->addWidget(posLab);
     ui->central->setLayout(mainLay);
     rightLay->addWidget(ui->typeBox);
+    rightLay->addWidget(ui->setBox);
     rightLay->addStretch();
     mainLay->addWidget(pad, 4);
     mainLay->addLayout(rightLay, 1);
@@ -36,7 +39,9 @@ MainWindow::MainWindow(QWidget *parent) :
     m->setMapping(ui->rectBtn, Kernel::RECT);
 
     connect(m, SIGNAL(mapped(int)), pad, SLOT(changeType(int)));
+    connect(ui->opaSlider,SIGNAL(valueChanged(int)),this, SLOT(setOpacity(int)));
     connect(pad, SIGNAL(mouseMov(QPoint)), this, SLOT(showMousePos(QPoint)));
+    connect(ui->actionCS, SIGNAL(triggered(bool)), pad, SLOT(cleanScreen()));
 }
 
 MainWindow::~MainWindow()
@@ -46,9 +51,15 @@ MainWindow::~MainWindow()
 
 void MainWindow::showMousePos(QPoint pos)
 {
-    qDebug()<<"showpos";
+    //qDebug()<<"showpos";
     int x = pos.x();
     int y = pos.y();
     QString text = QString("x: ") + QString::number(x) + QString(", y: ") + QString::number(y);
     posLab->setText(text);
+}
+
+void MainWindow::setOpacity(int opa)
+{
+    opacity = (float)opa / 100;
+    setWindowOpacity(opacity);
 }

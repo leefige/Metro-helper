@@ -79,3 +79,8 @@ void DrawPad::mouseMoveEvent(QMouseEvent *ev)
     qDebug()<<x<<y;
     emit mouseMov(pos);
 }
+
+void DrawPad::cleanScreen()
+{
+    ker->reset();
+}

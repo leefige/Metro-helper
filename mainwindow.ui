@@ -17,14 +17,14 @@
    </font>
   </property>
   <property name="windowTitle">
-   <string>MainWindow</string>
+   <string>Metro-helper</string>
   </property>
   <widget class="QWidget" name="central">
    <widget class="QGroupBox" name="typeBox">
     <property name="geometry">
      <rect>
-      <x>350</x>
-      <y>110</y>
+      <x>310</x>
+      <y>80</y>
       <width>151</width>
       <height>161</height>
      </rect>
@@ -59,6 +59,45 @@
      </item>
     </layout>
    </widget>
+   <widget class="QGroupBox" name="setBox">
+    <property name="geometry">
+     <rect>
+      <x>260</x>
+      <y>260</y>
+      <width>163</width>
+      <height>62</height>
+     </rect>
+    </property>
+    <property name="title">
+     <string>Window Setting</string>
+    </property>
+    <layout class="QVBoxLayout" name="verticalLayout_2">
+     <item>
+      <layout class="QHBoxLayout" name="horizontalLayout">
+       <item>
+        <widget class="QLabel" name="opaLab">
+         <property name="text">
+          <string>Opacity:</string>
+         </property>
+        </widget>
+       </item>
+       <item>
+        <widget class="QSlider" name="opaSlider">
+         <property name="minimum">
+          <number>20</number>
+         </property>
+         <property name="value">
+          <number>70</number>
+         </property>
+         <property name="orientation">
+          <enum>Qt::Horizontal</enum>
+         </property>
+        </widget>
+       </item>
+      </layout>
+     </item>
+    </layout>
+   </widget>
   </widget>
   <widget class="QMenuBar" name="menuBar">
    <property name="geometry">
@@ -66,9 +105,16 @@
      <x>0</x>
      <y>0</y>
      <width>529</width>
-     <height>24</height>
+     <height>23</height>
     </rect>
    </property>
+   <widget class="QMenu" name="menuOperation">
+    <property name="title">
+     <string>Operations</string>
+    </property>
+    <addaction name="actionCS"/>
+   </widget>
+   <addaction name="menuOperation"/>
   </widget>
   <widget class="QToolBar" name="mainToolBar">
    <attribute name="toolBarArea">
@@ -79,6 +125,11 @@
    </attribute>
   </widget>
   <widget class="QStatusBar" name="statusBar"/>
+  <action name="actionCS">
+   <property name="text">
+    <string>Clean Screen</string>
+   </property>
+  </action>
  </widget>
  <layoutdefault spacing="6" margin="11"/>
  <resources/>

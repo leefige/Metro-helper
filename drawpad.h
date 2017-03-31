@@ -30,6 +30,7 @@ signals:
 
 public slots:
     void changeType(int st);
+    void cleanScreen();
 };
 
 #endif // DRAWPAD_H

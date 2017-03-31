@@ -24,6 +24,7 @@ public:
     const QVector<QPoint>& rects();
 
     void changeType(station st);
+    void reset();
 
 private:
     QVector<QPoint> _cirs;          //三种点
