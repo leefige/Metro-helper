@@ -37,4 +37,12 @@ bool Point::operator != (const Point &rhs) const {
     return !(rhs == *this);
 }
 
+double Point::xx() {
+    return x;
+}
+
+double Point::yy() {
+    return y;
+}
+
 

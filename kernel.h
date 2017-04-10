@@ -4,6 +4,7 @@
 #include <QObject>
 #include <QVector>
 #include <QPoint>
+#include "NetworkFlow.h"
 
 class Kernel : public QObject
 {
@@ -24,6 +25,8 @@ public:
     const QVector<QPoint>& rects();
 
     void changeType(station st);
+
+    NetworkFlow NF;
 
 private:
     QVector<QPoint> _cirs;          //三种点

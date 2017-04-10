@@ -79,3 +79,8 @@ void DrawPad::mouseMoveEvent(QMouseEvent *ev)
     qDebug()<<x<<y;
     emit mouseMov(pos);
 }
+
+vector<pair<Point, Point>> DrawPad::getMinCut() {
+    ker->NF.getMaxFlow(CIRCLE, TRIANGLE);
+    return ker->NF.report();
+}

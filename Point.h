@@ -24,6 +24,10 @@ public:
     double len();
 
     friend double dist(Point a, Point b);
+
+    double xx();
+
+    double yy();
 };
 
 double dist(Point a, Point b);

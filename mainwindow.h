@@ -3,7 +3,6 @@
 
 #include <QMainWindow>
 #include "drawpad.h"
-#include "NetworkFlow.h"
 
 #include <QHBoxLayout>
 #include <QVBoxLayout>
@@ -29,7 +28,6 @@ private:
     QHBoxLayout *mainLay;
     QVBoxLayout *rightLay;
     QSignalMapper *m;
-    NetworkFlow *NF;
 
 public slots:
     void showMousePos(QPoint pos);

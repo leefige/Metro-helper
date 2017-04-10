@@ -72,6 +72,7 @@ int NetworkFlow::DFS(int x, int a) {
 }
 
 int NetworkFlow::getMaxFlow(int typeSource, int typeSink) {
+    printf("GetHere\n");
     pointList.push_back(Point(-1, -1));
     types.push_back(SUPERSINK);
     flow = new int* [size];
