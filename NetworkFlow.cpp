@@ -73,8 +73,11 @@ int NetworkFlow::DFS(int x, int a) {
 
 int NetworkFlow::getMaxFlow(int typeSource, int typeSink) {
     flow = new int* [size];
-    for (int i = 0; i < size; i++)
-        flow[i] = new int [size];
+    for (int i = 0; i < size; i++) {
+        flow[i] = new int[size];
+        for (int j = 0; j < size; j++)
+            flow[i][j] = 6;
+    }
     dist = new double [size];
     int SINK = size - 1;
     for (int i = 0; i < size; i++) {
