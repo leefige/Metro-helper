@@ -72,6 +72,8 @@ int NetworkFlow::DFS(int x, int a) {
 }
 
 int NetworkFlow::getMaxFlow(int typeSource, int typeSink) {
+    pointList.push_back(Point(-1, -1));
+    types.push_back(SUPERSINK);
     flow = new int* [size];
     for (int i = 0; i < size; i++) {
         flow[i] = new int[size];
@@ -108,4 +110,16 @@ double NetworkFlow::distance(int a, int b) {
     if (a == 0 || a == size - 1 || b == 0 || b == size - 1)
         return 0;
     return (pointList[a] - pointList[b]).len();
+}
+
+vector<pair<Point, Point>> NetworkFlow::report() {
+    vector<pair<Point, Point>> ansList;
+    for (int i = 0; i < size; i++)
+        for (int j = 0; j < size; j++) {
+            if (flow[i][j] == 0) {
+                pair<Point, Point> ans(pointList[i], pointList[j]);
+                ansList.push_back(ans);
+            }
+        }
+    return ansList;
 }

@@ -37,10 +37,13 @@ MainWindow::MainWindow(QWidget *parent) :
 
     connect(m, SIGNAL(mapped(int)), pad, SLOT(changeType(int)));
     connect(pad, SIGNAL(mouseMov(QPoint)), this, SLOT(showMousePos(QPoint)));
+
+    NF = new NetworkFlow;
 }
 
 MainWindow::~MainWindow()
 {
+    delete NF;
     delete ui;
 }
 
@@ -51,4 +54,9 @@ void MainWindow::showMousePos(QPoint pos)
     int y = pos.y();
     QString text = QString("x: ") + QString::number(x) + QString(", y: ") + QString::number(y);
     posLab->setText(text);
+}
+
+void MainWindow::on_pushButton_clicked()
+{
+    vector<pair<Point, Point>> list = NF->report();
 }
