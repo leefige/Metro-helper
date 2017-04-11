@@ -29,8 +29,6 @@ public:
     void reset();
     NetworkFlow NF;
 
-    NetworkFlow NF;
-
 private:
     QVector<QPoint> _cirs;          //三种点
     QVector<QPoint> _tris;

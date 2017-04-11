@@ -1,0 +1,15 @@
+# Created by .ignore support plugin (hsz.mobi)
+### Example user template template
+### Example user template
+
+# IntelliJ project files
+*.iml
+out
+gen
+.DS_Store
+.gitignore
+.idea/
+CMakeLists.txt
+cmake-build-debug/
+metro.pro
+metro.pro.user

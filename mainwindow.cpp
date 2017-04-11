@@ -70,6 +70,6 @@ void MainWindow::on_pushButton_clicked()
     vector<pair<Point, Point>> list = pad->getMinCut();
     int size = list.size();
     for (int i = 0; i < size; i++) {
-        printf("%d %d\n", list[i].first.xx(), list[i].second.yy());
+        printf("%.2f %.2f %.2f %.2f\n", list[i].first.xx(), list[i].first.yy(), list[i].second.xx(), list[i].second.yy());
     }
 }
