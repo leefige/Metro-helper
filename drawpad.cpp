@@ -2,6 +2,7 @@
 #include "kernel.h"
 
 #include <QPen>
+#include <QBrush>
 #include <QImage>
 #include <QPoint>
 #include <QPainter>
@@ -12,10 +13,9 @@
 #include <QDebug>
 #include <vector>
 
-DrawPad::DrawPad(QWidget *parent) :
-    isShow(0),
-    QWidget(parent)
+DrawPad::DrawPad(QWidget *parent) : QWidget(parent)
 {
+    isShow = 0;
     ker = new Kernel(this);
     cir = new QImage(":/img/cir_pic");      //图标
     tri = new QImage(":/img/tri_pic");
@@ -46,6 +46,22 @@ void DrawPad::paintEvent(QPaintEvent *e)
 {
     QPainter p(this);
 
+    //Draw lines here in future
+    if(isShow)
+    {
+        int lsize = ker->lines.size();
+        qDebug() << lsize;
+        for(int i = 0; i < lsize; i++)
+        {
+            qDebug("%.2f %.2f %.2f %.2f\n", ker->lines[i].first.xx(), ker->lines[i].first.yy(),
+                   ker->lines[i].second.xx(), ker->lines[i].second.yy());
+            QPen pen(Qt::cyan);
+            pen.setWidth(10);
+            p.setPen(pen);
+            p.drawLine(int(ker->lines[i].first.xx()), int(ker->lines[i].first.yy()),
+                       int(ker->lines[i].second.xx()), int(ker->lines[i].second.yy()));
+        }
+    }
     foreach(QPoint c, ker->cirs())
     {
         QRect r(c.x()-7.5, c.y()-7.5, 15, 15);   //15*15图标
@@ -63,21 +79,6 @@ void DrawPad::paintEvent(QPaintEvent *e)
         QRect r(c.x()-7.5, c.y()-7.5, 15, 15);   //15*15图标
         p.drawImage(r, *rect);
     }
-
-    //Draw lines here in future
-    if(isShow)
-    {
-        vector<pair<Point, Point>>&& lines = getMinCut();
-        if(!lines.empty())
-        {
-            int lsize = lines.size();
-            for(int i = 0; i < lsize; i++)
-            {
-                p.drawLine(lines[i].first.xx(), lines[i].first.yy(),
-                           lines[i].second.xx(), lines[i].second.yy());
-            }
-        }
-    }
 }
 
 void DrawPad::mousePressEvent(QMouseEvent *ev)     //发送位置
@@ -92,7 +93,7 @@ void DrawPad::mouseMoveEvent(QMouseEvent *ev)
 {
     QPoint pos = ev->pos();
     int x = pos.x(), y = pos.y();
-    qDebug()<<x<<y;
+    //qDebug()<<x<<y;
     emit mouseMov(pos);
 }
 
@@ -101,6 +102,7 @@ void DrawPad::cleanScreen() {
 }
 
 vector<pair<Point, Point>> DrawPad::getMinCut() {
+    qDebug() << "get_min called";
     ker->NF.initMaxFlow();
     ker->NF.getMaxFlow(CIRCLE, TRIANGLE);
     ker->NF.getMaxFlow(CIRCLE, RECTANGLE);
@@ -110,6 +112,8 @@ vector<pair<Point, Point>> DrawPad::getMinCut() {
 
 void DrawPad::change_isShow()
 {
+    qDebug() << "is_show changed";
     isShow = 1;
+    ker->lines = getMinCut();
     update();
 }

@@ -24,6 +24,7 @@ public:
     const QVector<QPoint>& tris();
     const QVector<QPoint>& rects();
     const vector<pair<Point, Point>>& lineList();
+    vector<pair<Point, Point>> lines;
 
     void changeType(station st);
     void reset();

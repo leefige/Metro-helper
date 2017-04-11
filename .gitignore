@@ -11,5 +11,4 @@ gen
 .idea/
 CMakeLists.txt
 cmake-build-debug/
-metro.pro
 metro.pro.user

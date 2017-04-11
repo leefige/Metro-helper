@@ -6,6 +6,7 @@
 #include <cmath>
 #include <memory.h>
 #include <cstdio>
+#include <QDebug>
 
 bool equals(double a, double b) {
     if (abs(a - b) < eps)
@@ -117,11 +118,12 @@ double NetworkFlow::distance(int a, int b) {
 }
 
 vector<pair<Point, Point>> NetworkFlow::report() {
+    qDebug() << "report called";
     vector<pair<Point, Point>> ansList;
     for (int i = 1; i < size - 1; i++)
         for (int j = 1; j < size - 1; j++) {
             if (flow[i][j] == 0) {
-                printf("label: %d %d\n", i, j);
+                qDebug("label: %d %d\n", i, j);
                 pair<Point, Point> ans(pointList[i], pointList[j]);
                 ansList.push_back(ans);
             }
