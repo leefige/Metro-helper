@@ -84,3 +84,9 @@ void DrawPad::cleanScreen()
 {
     ker->reset();
 }
+
+
+vector<pair<Point, Point>> DrawPad::getMinCut() {
+    ker->NF.getMaxFlow(CIRCLE, TRIANGLE);
+    return ker->NF.report();
+}

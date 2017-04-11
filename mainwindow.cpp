@@ -24,6 +24,7 @@ MainWindow::MainWindow(QWidget *parent) :
     ui->central->setLayout(mainLay);
     rightLay->addWidget(ui->typeBox);
     rightLay->addWidget(ui->setBox);
+    rightLay->addWidget(ui->pushButton);
     rightLay->addStretch();
     mainLay->addWidget(pad, 4);
     mainLay->addLayout(rightLay, 1);
@@ -62,4 +63,13 @@ void MainWindow::setOpacity(int opa)
 {
     opacity = (float)opa / 100;
     setWindowOpacity(opacity);
+}
+
+void MainWindow::on_pushButton_clicked()
+{
+    vector<pair<Point, Point>> list = pad->getMinCut();
+    int size = list.size();
+    for (int i = 0; i < size; i++) {
+        printf("%d %d\n", list[i].first.xx(), list[i].second.yy());
+    }
 }

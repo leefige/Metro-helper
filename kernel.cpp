@@ -38,12 +38,15 @@ void Kernel::add(station st, QPoint pos)
 {
     switch (st) {
     case CIR:
+        NF.addPoints(pos.x(), pos.y(), CIRCLE);
         _cirs.append(pos);
         break;
     case TRI:
+        NF.addPoints(pos.x(), pos.y(), TRIANGLE);
         _tris.append(pos);
         break;
     case RECT:
+        NF.addPoints(pos.x(), pos.y(), RECTANGLE);
         _rects.append(pos);
         break;
     default:

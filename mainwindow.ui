@@ -62,7 +62,7 @@
    <widget class="QGroupBox" name="setBox">
     <property name="geometry">
      <rect>
-      <x>260</x>
+      <x>290</x>
       <y>260</y>
       <width>163</width>
       <height>62</height>
@@ -97,6 +97,19 @@
       </layout>
      </item>
     </layout>
+   </widget>
+   <widget class="QPushButton" name="pushButton">
+    <property name="geometry">
+     <rect>
+      <x>370</x>
+      <y>330</y>
+      <width>75</width>
+      <height>23</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>Plan Railways</string>
+    </property>
    </widget>
   </widget>
   <widget class="QMenuBar" name="menuBar">

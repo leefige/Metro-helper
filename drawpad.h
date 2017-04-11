@@ -9,6 +9,7 @@ class DrawPad : public QWidget
     Q_OBJECT
 public:
     explicit DrawPad(QWidget *parent = 0);
+    vector<pair<Point, Point>> getMinCut();
     ~DrawPad();
 
 protected:
