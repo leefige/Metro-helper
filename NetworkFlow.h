@@ -34,6 +34,7 @@ public:
     void addPoints(double x, double y, int type);
     void addPoints(const Point& p, int type);
     int getMaxFlow(int typeSource, int typeSink);
+    void initMaxFlow();
     vector<pair<Point, Point>> report();
     virtual ~NetworkFlow();
 };
