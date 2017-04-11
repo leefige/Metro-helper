@@ -23,8 +23,11 @@ public:
     const QVector<QPoint>& cirs();    //get()
     const QVector<QPoint>& tris();
     const QVector<QPoint>& rects();
+    const vector<pair<Point, Point>>& lineList();
 
     void changeType(station st);
+    void reset();
+    NetworkFlow NF;
 
     NetworkFlow NF;
 

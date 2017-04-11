@@ -29,9 +29,13 @@ private:
     QVBoxLayout *rightLay;
     QSignalMapper *m;
 
+    float opacity;
+
 public slots:
     void showMousePos(QPoint pos);
+
 private slots:
+    void setOpacity(int opa);
     void on_pushButton_clicked();
 };
 

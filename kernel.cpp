@@ -53,3 +53,12 @@ void Kernel::add(station st, QPoint pos)
         break;
     }
 }
+
+void Kernel::reset()
+{
+    QVector<QPoint> temp0, temp1, temp2;
+    _cirs.swap(temp0);
+    _tris.swap(temp1);
+    _rects.swap(temp2);
+    emit readyPaint();
+}
