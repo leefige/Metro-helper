@@ -12,28 +12,28 @@ class Kernel : public QObject
 
 public:
     enum station{TRI = 3, CIR = 0, RECT = 4};
-
     station cur_type;
 
-    void add(station st, QPoint pos); //暂时只有加
-
-public:
     explicit Kernel(QObject *parent = 0);
+    ~Kernel();
 
     const QVector<QPoint>& cirs();    //get()
     const QVector<QPoint>& tris();
     const QVector<QPoint>& rects();
-    const vector<pair<Point, Point>>& lineList();
-    vector<pair<Point, Point>> lines;
+    vector<pair<Point, Point>>& lineList();
+    void getMinCut();
 
     void changeType(station st);
     void reset();
-    NetworkFlow NF;
 
 private:
     QVector<QPoint> _cirs;          //三种点
     QVector<QPoint> _tris;
     QVector<QPoint> _rects;
+    vector<pair<Point, Point>> _lines;
+    NetworkFlow* NF;
+
+    void add(station st, QPoint pos); //暂时只有加
 
 signals:
     void readyPaint();

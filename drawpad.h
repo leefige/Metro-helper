@@ -9,7 +9,6 @@ class DrawPad : public QWidget
     Q_OBJECT
 public:
     explicit DrawPad(QWidget *parent = 0);
-    vector<pair<Point, Point>> getMinCut();
     ~DrawPad();
 
 protected:
@@ -20,7 +19,6 @@ protected:
 
 private:
     Kernel *ker;
-
     QImage* cir;
     QImage* tri;
     QImage* rect;
@@ -33,7 +31,7 @@ signals:
 public slots:
     void changeType(int st);
     void cleanScreen();
-    void change_isShow();
+    void planPath();
 };
 
 #endif // DRAWPAD_H

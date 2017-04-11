@@ -43,7 +43,7 @@ MainWindow::MainWindow(QWidget *parent) :
     connect(ui->opaSlider,SIGNAL(valueChanged(int)),this, SLOT(setOpacity(int)));
     connect(pad, SIGNAL(mouseMov(QPoint)), this, SLOT(showMousePos(QPoint)));
     connect(ui->actionCS, SIGNAL(triggered(bool)), pad, SLOT(cleanScreen()));
-    connect(ui->showBtn, SIGNAL(clicked(bool)), pad, SLOT(change_isShow()));
+    connect(ui->showBtn, SIGNAL(clicked(bool)), pad, SLOT(planPath()));
 }
 
 MainWindow::~MainWindow()
