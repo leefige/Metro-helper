@@ -43,6 +43,7 @@ MainWindow::MainWindow(QWidget *parent) :
     connect(ui->opaSlider,SIGNAL(valueChanged(int)),this, SLOT(setOpacity(int)));
     connect(pad, SIGNAL(mouseMov(QPoint)), this, SLOT(showMousePos(QPoint)));
     connect(ui->actionCS, SIGNAL(triggered(bool)), pad, SLOT(cleanScreen()));
+    connect(this, SIGNAL(show_lines()), pad, SLOT(change_isShow()));
 }
 
 MainWindow::~MainWindow()
@@ -70,6 +71,7 @@ void MainWindow::on_pushButton_clicked()
     vector<pair<Point, Point>> list = pad->getMinCut();
     int size = list.size();
     for (int i = 0; i < size; i++) {
-        printf("%.2f %.2f %.2f %.2f\n", list[i].first.xx(), list[i].first.yy(), list[i].second.xx(), list[i].second.yy());
+        qDebug("%.2f %.2f %.2f %.2f\n", list[i].first.xx(), list[i].first.yy(), list[i].second.xx(), list[i].second.yy());
     }
+    emit show_lines();
 }

@@ -3,11 +3,9 @@
 //
 
 #include "NetworkFlow.h"
-
-double abs(double x) {
-    if (x < 0) return 0 - x;
-    return x;
-}
+#include <cmath>
+#include <memory.h>
+#include <cstdio>
 
 bool equals(double a, double b) {
     if (abs(a - b) < eps)

@@ -24,6 +24,7 @@ private:
     QImage* cir;
     QImage* tri;
     QImage* rect;
+    bool isShow;
 
 signals:
     void mouseClk(QPoint p);
@@ -32,6 +33,7 @@ signals:
 public slots:
     void changeType(int st);
     void cleanScreen();
+    void change_isShow();
 };
 
 #endif // DRAWPAD_H

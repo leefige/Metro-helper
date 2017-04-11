@@ -31,6 +31,9 @@ private:
 
     float opacity;
 
+signals:
+    void show_lines();
+
 public slots:
     void showMousePos(QPoint pos);
 

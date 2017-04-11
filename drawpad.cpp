@@ -10,8 +10,11 @@
 #include <QKeyEvent>
 #include <QApplication>
 #include <QDebug>
+#include <vector>
 
-DrawPad::DrawPad(QWidget *parent) : QWidget(parent)
+DrawPad::DrawPad(QWidget *parent) :
+    isShow(0),
+    QWidget(parent)
 {
     ker = new Kernel(this);
     cir = new QImage(":/img/cir_pic");      //图标
@@ -62,6 +65,19 @@ void DrawPad::paintEvent(QPaintEvent *e)
     }
 
     //Draw lines here in future
+    if(isShow)
+    {
+        vector<pair<Point, Point>>&& lines = getMinCut();
+        if(!lines.empty())
+        {
+            int lsize = lines.size();
+            for(int i = 0; i < lsize; i++)
+            {
+                p.drawLine(lines[i].first.xx(), lines[i].first.yy(),
+                           lines[i].second.xx(), lines[i].second.yy());
+            }
+        }
+    }
 }
 
 void DrawPad::mousePressEvent(QMouseEvent *ev)     //发送位置
@@ -90,4 +106,10 @@ vector<pair<Point, Point>> DrawPad::getMinCut() {
     ker->NF.getMaxFlow(CIRCLE, RECTANGLE);
     ker->NF.getMaxFlow(TRIANGLE, RECTANGLE);
     return ker->NF.report();
+}
+
+void DrawPad::change_isShow()
+{
+    isShow = 1;
+    update();
 }
