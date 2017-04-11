@@ -23,3 +23,7 @@ Help u get high mark in Mini-metro
 
 ## NetworkFlow：包含于kernel，kernel的私有成员，所有运算接口只与kernel交互
 
+> 另外还有我的一点想法：
+- 现在点的数据完整地保存在kernel里，我想NF是不是也可以直接从kernel里获取点的数据这样就不用重复拷贝？而且一致性也比较好。。。
+- 我的想法是，可以给NF一个类似parent的指针，构造的时候就指向kernel，然后需要点的数据就直接访问kernel的对应接口，而且点的类型在kernel里也有一个enum类型的定义，可以把那个定义移到MF里。
+乔神可以在下一版里考虑一下，不过话说你要是想访问kernel里的数据的话，可能需要qt的lib。。。这样是不是就不能用clion了[捂脸]

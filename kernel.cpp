@@ -73,6 +73,8 @@ void Kernel::reset()
     _cirs.swap(temp0);
     _tris.swap(temp1);
     _rects.swap(temp2);
+    vector<pair<Point, Point>> temp3;
+    _lines.swap(temp3);
     emit readyPaint();
 }
 
