@@ -15,9 +15,12 @@ bool equals(double a, double b) {
 }
 
 NetworkFlow::NetworkFlow() {
-    size = 1;
+    size = 2;
     pointList.push_back(Point(-1, -1));
     types.push_back(SUPERSOURCE);
+    pointList.push_back(Point(-1, -1));
+    types.push_back(SUPERSINK);
+    flow = NULL;
 }
 
 void NetworkFlow::addPoints(double x, double y, int type) {
@@ -60,7 +63,7 @@ bool NetworkFlow::SPFA() {
 }
 
 int NetworkFlow::DFS(int x, int a) {
-    int SINK = size - 1;
+    int SINK = 1;
     if (x == SINK || a == 0) return a;
     int cur = 0, f;
     for (int i = 0; i < size; i++) {
@@ -86,15 +89,15 @@ int NetworkFlow::getMaxFlow(int typeSource, int typeSink) {
         for (int j = 1; j < size - 1; j++)
             flow[i][j] = 6;
     dist = new double [size];
-    int SINK = size - 1;
+    int SINK = 1;
     for (int i = 0; i < size; i++) {
         if (types[i] == typeSource) {
-            flow[i][0] = 6;
-            flow[0][i] = 6;
+            flow[i][0] = 12;
+            flow[0][i] = 12;
         }
         if (types[i] == typeSink) {
-            flow[i][SINK] = 6;
-            flow[SINK][i] = 6;
+            flow[i][SINK] = 1000;
+            flow[SINK][i] = 1000;
         }
     }
     int flow = 0;
@@ -112,7 +115,7 @@ NetworkFlow::~NetworkFlow() {
 }
 
 double NetworkFlow::distance(int a, int b) {
-    if (a == 0 || a == size - 1 || b == 0 || b == size - 1)
+    if (a == 0 || a == 1 || b == 0 || b == 1)
         return 0.1;
     return (pointList[a] - pointList[b]).len();
 }
@@ -132,7 +135,11 @@ vector<pair<Point, Point>> NetworkFlow::report() {
 }
 
 void NetworkFlow::initMaxFlow() {
-    addPoints(-1, -1, SUPERSINK);
+    if (flow != NULL) {
+        for (int i = 0; i < size; i++)
+            delete [] flow[i];
+        delete [] flow;
+    }
     flow = new int* [size];
     for (int i = 0; i < size; i++) {
         flow[i] = new int[size];
