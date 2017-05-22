@@ -8,6 +8,7 @@
 #include "Point.h"
 #include <vector>
 #include <queue>
+#include <cmath>
 
 #define SUPERSOURCE 0
 #define SUPERSINK 1
@@ -15,7 +16,7 @@
 #define CIRCLE 3
 #define TRIANGLE 4
 #define INF 100000000
-#define eps 1e-5
+#define eps 1e-15
 
 using namespace std;
 
