@@ -120,7 +120,7 @@ double NetworkFlow::distance(int a, int b) {
     return (pointList[a] - pointList[b]).len();
 }
 
-vector<pair<Point, Point>> NetworkFlow::report() {
+vector<Line> NetworkFlow::report() {
     qDebug() << "report called";
     vector<pair<Point, Point>> ansList;
     for (int i = 1; i < size - 1; i++)

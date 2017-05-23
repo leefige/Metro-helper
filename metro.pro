@@ -19,12 +19,14 @@ SOURCES += main.cpp\
     drawpad.cpp \
     NetworkFlow.cpp \
     Point.cpp \
+    Line.cpp
 
 HEADERS  += mainwindow.h \
     kernel.h \
     drawpad.h \
     NetworkFlow.h \
-    Point.h
+    Point.h \
+    Line.h
 
 FORMS    += mainwindow.ui
 

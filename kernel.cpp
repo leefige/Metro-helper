@@ -31,7 +31,7 @@ const QVector<QPoint>& Kernel::rects()
     return _rects;
 }
 
-vector<pair<Point, Point>>& Kernel::lineList()
+vector<Line>& Kernel::lineList()
 {
     return _lines;
 }

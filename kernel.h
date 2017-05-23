@@ -20,7 +20,7 @@ public:
     const QVector<QPoint>& cirs();    //get()
     const QVector<QPoint>& tris();
     const QVector<QPoint>& rects();
-    vector<pair<Point, Point>>& lineList();
+    vector<Line>& lineList();
     void getMinCut();
 
     void changeType(station st);
@@ -30,7 +30,7 @@ private:
     QVector<QPoint> _cirs;          //三种点
     QVector<QPoint> _tris;
     QVector<QPoint> _rects;
-    vector<pair<Point, Point>> _lines;
+    vector<Line> _lines;
     NetworkFlow* NF;
 
     void add(station st, QPoint pos); //暂时只有加

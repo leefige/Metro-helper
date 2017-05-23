@@ -2,6 +2,7 @@
 #include "kernel.h"
 
 #include <QPen>
+#include <QColor>
 #include <QBrush>
 #include <QImage>
 #include <QPoint>
@@ -49,22 +50,26 @@ void DrawPad::paintEvent(QPaintEvent *e)
     //Draw lines here in future
     if(isShow)
     {
-        vector<pair<Point, Point>>& lines = ker->lineList();
+        const vector<Line>& lines = ker->lineList();
         int lsize = lines.size();
-        qDebug() << lsize;
+        qDebug() << "line_size is " << lsize;
         for(int i = 0; i < lsize; i++)
         {
-            qDebug("%.2f %.2f %.2f %.2f\n",
+            qDebug("(%.2f, %.2f), (%.2f, %.2f), %d\n",
                    lines[i].first.xx(), lines[i].first.yy(),
-                   lines[i].second.xx(), lines[i].second.yy());
-            QPen pen(Qt::cyan);
-            pen.setWidth(10);
+                   lines[i].second.xx(), lines[i].second.yy(),
+                   lines[i].d);
+            QColor color(255, 255, 0);  //yellow
+            color.setAlpha(int(255 * lines[i].d / MAX_D));  //alpha is decided by d
+            QPen pen(color);
+            pen.setWidth(8);
             p.setPen(pen);
             p.drawLine(int(lines[i].first.xx()), int(lines[i].first.yy()),
                        int(lines[i].second.xx()), int(lines[i].second.yy()));
         }
     }
 
+    //Draw stations
     foreach(QPoint c, ker->cirs())
     {
         QRect r(c.x()-7.5, c.y()-7.5, 15, 15);   //15*15图标

@@ -6,6 +6,7 @@
 #define METRO_HELPER_NETWORKFLOW_H
 
 #include "Point.h"
+#include "Line.h"
 #include <vector>
 #include <queue>
 #include <cmath>
@@ -36,7 +37,7 @@ public:
     void addPoints(const Point& p, int type);
     int getMaxFlow(int typeSource, int typeSink);
     void initMaxFlow();
-    vector<pair<Point, Point>> report();
+    vector<Line> report();
     virtual ~NetworkFlow();
 };
 
