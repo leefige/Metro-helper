@@ -9,6 +9,5 @@ gen
 .DS_Store
 .gitignore
 .idea/
-CMakeLists.txt
 cmake-build-debug/
 metro.pro.user

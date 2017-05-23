@@ -37,7 +37,7 @@ void NetworkFlow::addPoints(const Point& p, int type) {
 
 bool NetworkFlow::SPFA() {
     bool *vis = new bool [size];
-    memset(vis, 0, sizeof(vis) * size);
+    memset(vis, 0, sizeof(bool) * size);
     for (int i = 0; i < size; i++) {
         dist[i] = INF;
     }
@@ -83,17 +83,14 @@ int NetworkFlow::DFS(int x, int a) {
 }
 
 int NetworkFlow::getMaxFlow(int typeSource, int typeSink) {
-    printf("GetHere\n");
+    printf("GetMaxFlow\n");
 
-    for (int i = 1; i < size - 1; i++)
-        for (int j = 1; j < size - 1; j++)
-            flow[i][j] = 6;
-    dist = new double [size];
     int SINK = 1;
+    dist = new double [size];
     for (int i = 0; i < size; i++) {
         if (types[i] == typeSource) {
-            flow[i][0] = MAX_D;
-            flow[0][i] = MAX_D;
+            flow[i][0] = int(MAX_D * 1.5);
+            flow[0][i] = int(MAX_D * 1.5);
         }
         if (types[i] == typeSink) {
             flow[i][SINK] = 1000;
@@ -123,13 +120,14 @@ double NetworkFlow::distance(int a, int b) {
 vector<Line> NetworkFlow::report() {
     qDebug() << "report called";
     vector<Line> ansList;
-    for (int i = 1; i < size - 1; i++)
-        for (int j = 1; j < size - 1; j++) {
-            if (flow[i][j] < 12) {
+    for (int i = 2; i < size - 1; i++)
+        for (int j = 2; j < size - 1; j++) {
+            if (flow[i][j] < MAX_D) {
                 qDebug("label: %d %d\n", i, j);
-                ansList.push_back(Line(pointList[i], pointList[j], flow[i][j]));
+                ansList.push_back(Line(pointList[i], pointList[j], MAX_D - flow[i][j]));
             }
         }
+    printf("AnsSize: %d %d\n", size, int(ansList.size()));
     return ansList;
 }
 
@@ -145,4 +143,7 @@ void NetworkFlow::initMaxFlow() {
         for (int j = 0; j < size; j++)
             flow[i][j] = 0;
     }
+    for (int i = 2; i < size - 1; i++)
+        for (int j = 2; j < size - 1; j++)
+            flow[i][j] = MAX_D;
 }
