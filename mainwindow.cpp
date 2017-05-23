@@ -14,7 +14,7 @@ MainWindow::MainWindow(QWidget *parent) :
     setAutoFillBackground(true);
 
     setMouseTracking(true);
-    setMinimumSize(400, 300);
+    setMinimumSize(1920, 1080);
     setWindowOpacity(opacity);
     ui->statusBar->setStyleSheet("QStatusBar::item{border: 0px}");
 
@@ -29,7 +29,7 @@ MainWindow::MainWindow(QWidget *parent) :
     rightLay->addWidget(ui->setBox);
     rightLay->addWidget(ui->showBtn);
     rightLay->addStretch();
-    mainLay->addWidget(pad, 6);
+    mainLay->addWidget(pad, 10);
     mainLay->addLayout(rightLay, 1);
 
     //map：转换信号类型
