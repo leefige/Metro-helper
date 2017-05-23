@@ -22,9 +22,14 @@ DrawPad::DrawPad(QWidget *parent) : QWidget(parent)
     tri = new QImage(":/img/tri_pic");
     rect = new QImage(":/img/rect_pic");
 
-    setMouseTracking(true);
-    setPalette(QPalette(Qt::white));
     setAutoFillBackground(true);
+    QPixmap pixmap(":/img/bg");
+    QPalette palette;
+    palette.setBrush(QPalette::Background, QBrush(pixmap));
+    this->setPalette(palette);
+
+    setMouseTracking(true);
+    //setPalette(QPalette(Qt::white));
     //setMinimumSize(800,600);
 
     connect(this, SIGNAL(mouseClk(QPoint)), ker, SLOT(pointSlot(QPoint)));
@@ -41,6 +46,16 @@ DrawPad::~DrawPad()
 void DrawPad::changeType(int st)
 {
     ker->changeType(Kernel::station(st));
+    return;
+}
+
+void DrawPad::resizeEvent(QResizeEvent *e)
+{
+    QPixmap pixmap(":/img/bg");
+    QPalette palette;
+    palette.setBrush(QPalette::Background, QBrush(pixmap.scaled(this->size())));
+    this->setPalette(palette);
+    return;
 }
 
 void DrawPad::paintEvent(QPaintEvent *e)
