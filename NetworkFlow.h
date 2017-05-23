@@ -18,6 +18,7 @@
 #define TRIANGLE 4
 #define INF 100000000
 #define eps 1e-15
+#define MAX_D 12
 
 using namespace std;
 

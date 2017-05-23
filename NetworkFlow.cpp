@@ -92,8 +92,8 @@ int NetworkFlow::getMaxFlow(int typeSource, int typeSink) {
     int SINK = 1;
     for (int i = 0; i < size; i++) {
         if (types[i] == typeSource) {
-            flow[i][0] = 12;
-            flow[0][i] = 12;
+            flow[i][0] = MAX_D;
+            flow[0][i] = MAX_D;
         }
         if (types[i] == typeSink) {
             flow[i][SINK] = 1000;
@@ -122,13 +122,12 @@ double NetworkFlow::distance(int a, int b) {
 
 vector<Line> NetworkFlow::report() {
     qDebug() << "report called";
-    vector<pair<Point, Point>> ansList;
+    vector<Line> ansList;
     for (int i = 1; i < size - 1; i++)
         for (int j = 1; j < size - 1; j++) {
-            if (flow[i][j] == 0) {
+            if (flow[i][j] < 12) {
                 qDebug("label: %d %d\n", i, j);
-                pair<Point, Point> ans(pointList[i], pointList[j]);
-                ansList.push_back(ans);
+                ansList.push_back(Line(pointList[i], pointList[j], flow[i][j]));
             }
         }
     return ansList;
