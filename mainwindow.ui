@@ -110,6 +110,9 @@
     <property name="text">
      <string>Plan Railways</string>
     </property>
+    <property name="checkable">
+     <bool>true</bool>
+    </property>
    </widget>
   </widget>
   <widget class="QMenuBar" name="menuBar">

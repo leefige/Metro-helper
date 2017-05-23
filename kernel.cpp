@@ -72,11 +72,12 @@ void Kernel::add(station st, QPoint pos)
 void Kernel::reset()
 {
     QVector<QPoint> temp0, temp1, temp2;
-    _cirs.swap(temp0);
-    _tris.swap(temp1);
-    _rects.swap(temp2);
+    //_cirs.swap(temp0);
+    //_tris.swap(temp1);
+    //_rects.swap(temp2);
     vector<Line> temp3;
     _lines.swap(temp3);
+    NF->initMaxFlow();
     emit readyPaint();
 }
 

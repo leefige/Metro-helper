@@ -16,7 +16,6 @@
 
 DrawPad::DrawPad(QWidget *parent) : QWidget(parent)
 {
-    isShow = 0;
     ker = new Kernel(this);
     cir = new QImage(":/img/cir_pic");      //图标
     tri = new QImage(":/img/tri_pic");
@@ -70,6 +69,11 @@ void DrawPad::paintEvent(QPaintEvent *e)
         qDebug() << "line_size is " << lsize;
         for(int i = 0; i < lsize; i++)
         {
+            if(lsize == 0)
+            {
+                qDebug() << "line_size is 0\n";
+                break;
+            }
             qDebug("(%.2f, %.2f), (%.2f, %.2f), %d\n",
                    lines[i].first.xx(), lines[i].first.yy(),
                    lines[i].second.xx(), lines[i].second.yy(),
@@ -77,31 +81,34 @@ void DrawPad::paintEvent(QPaintEvent *e)
             QColor color(255, 255, 0);  //yellow
             color.setAlpha(int(255 * lines[i].d / MAX_D));  //alpha is decided by d
             QPen pen(color);
-            pen.setWidth(8);
+            pen.setWidth(15);
             p.setPen(pen);
             p.drawLine(int(lines[i].first.xx()), int(lines[i].first.yy()),
                        int(lines[i].second.xx()), int(lines[i].second.yy()));
+            qDebug() << "end for\n";
         }
     }
 
     //Draw stations
     foreach(QPoint c, ker->cirs())
     {
-        QRect r(c.x()-7.5, c.y()-7.5, 15, 15);   //15*15图标
+        QRect r(c.x()-10, c.y()-10, 20, 20);   //20*20图标
         p.drawImage(r, *cir);
     }
 
     foreach(QPoint c, ker->tris())
     {
-        QRect r(c.x()-7.5, c.y()-7.5, 15, 15);   //15*15图标
+        QRect r(c.x()-10, c.y()-10, 20, 20);   //20*20图标
         p.drawImage(r, *tri);
     }
 
     foreach(QPoint c, ker->rects())
     {
-        QRect r(c.x()-7.5, c.y()-7.5, 15, 15);   //15*15图标
+        QRect r(c.x()-10, c.y()-10, 20, 20);   //20*20图标
         p.drawImage(r, *rect);
     }
+    qDebug() << "end paint\n";
+    return;
 }
 
 void DrawPad::mousePressEvent(QMouseEvent *ev)     //发送位置
@@ -120,14 +127,14 @@ void DrawPad::mouseMoveEvent(QMouseEvent *ev)
     emit mouseMov(pos);
 }
 
-void DrawPad::cleanScreen() {
+void DrawPad::cleanScreen()
+{
     ker->reset();
+    update();
 }
 
 void DrawPad::planPath()
 {
-    qDebug() << "is_show changed";
-    isShow = 1;
     ker->getMinCut();
     update();
 }

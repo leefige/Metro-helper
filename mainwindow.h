@@ -36,6 +36,7 @@ public slots:
 
 private slots:
     void setOpacity(int opa);
+    void showPath();
 };
 
 #endif // MAINWINDOW_H

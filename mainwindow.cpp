@@ -46,7 +46,7 @@ MainWindow::MainWindow(QWidget *parent) :
     connect(ui->opaSlider,SIGNAL(valueChanged(int)),this, SLOT(setOpacity(int)));
     connect(pad, SIGNAL(mouseMov(QPoint)), this, SLOT(showMousePos(QPoint)));
     connect(ui->actionCS, SIGNAL(triggered(bool)), pad, SLOT(cleanScreen()));
-    connect(ui->showBtn, SIGNAL(clicked(bool)), pad, SLOT(planPath()));
+    connect(ui->showBtn, SIGNAL(clicked(bool)), this, SLOT(showPath()));
 }
 
 MainWindow::~MainWindow()
@@ -61,6 +61,24 @@ void MainWindow::showMousePos(QPoint pos)
     int y = pos.y();
     QString text = QString("x: ") + QString::number(x) + QString(", y: ") + QString::number(y);
     posLab->setText(text);
+}
+
+void MainWindow::showPath()
+{
+    bool flag = ui->showBtn->isChecked();
+    qDebug() << "flag is: " << flag;
+    ui->showBtn->setChecked(flag);
+    pad->isShow = flag;
+    qDebug() << "is_show changed: " << pad->isShow;
+    if(pad->isShow)
+    {
+        pad->planPath();
+    }
+    else
+    {
+        pad->cleanScreen();
+    }
+    return;
 }
 
 void MainWindow::setOpacity(int opa)

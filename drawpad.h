@@ -10,6 +10,7 @@ class DrawPad : public QWidget
 public:
     explicit DrawPad(QWidget *parent = 0);
     ~DrawPad();
+    bool isShow;
 
 protected:
     void paintEvent(QPaintEvent *e);
@@ -23,7 +24,6 @@ private:
     QImage* cir;
     QImage* tri;
     QImage* rect;
-    bool isShow;
 
 signals:
     void mouseClk(QPoint p);
