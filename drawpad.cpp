@@ -50,7 +50,7 @@ void DrawPad::paintEvent(QPaintEvent *e)
     //Draw lines here in future
     if(isShow)
     {
-        const vector<Line>& lines = ker->lineList();
+        vector<Line> lines = ker->lineList();
         int lsize = lines.size();
         qDebug() << "line_size is " << lsize;
         for(int i = 0; i < lsize; i++)
