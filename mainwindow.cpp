@@ -10,6 +10,9 @@ MainWindow::MainWindow(QWidget *parent) :
 {
     opacity = 0.70;
     ui->setupUi(this);
+
+    setAutoFillBackground(true);
+
     setMouseTracking(true);
     setMinimumSize(400, 300);
     setWindowOpacity(opacity);
@@ -26,7 +29,7 @@ MainWindow::MainWindow(QWidget *parent) :
     rightLay->addWidget(ui->setBox);
     rightLay->addWidget(ui->showBtn);
     rightLay->addStretch();
-    mainLay->addWidget(pad, 4);
+    mainLay->addWidget(pad, 6);
     mainLay->addLayout(rightLay, 1);
 
     //map：转换信号类型
