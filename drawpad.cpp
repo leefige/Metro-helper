@@ -79,7 +79,7 @@ void DrawPad::paintEvent(QPaintEvent *e)
                    lines[i].second.xx(), lines[i].second.yy(),
                    lines[i].d);
             QColor color(255, 255, 0);  //yellow
-            color.setAlpha(int(255 * lines[i].d / MAX_D));  //alpha is decided by d
+            color.setAlpha(int(255 * lines[i].d / MAX_D * lines[i].d / MAX_D * lines[i].d / MAX_D));  //alpha is decided by d
             QPen pen(color);
             pen.setWidth(15);
             p.setPen(pen);
