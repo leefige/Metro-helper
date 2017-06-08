@@ -14,7 +14,7 @@ MainWindow::MainWindow(QWidget *parent) :
     setAutoFillBackground(true);
 
     setMouseTracking(true);
-    setMinimumSize(1920, 1080);
+    setMinimumSize(800, 600);
     setWindowOpacity(opacity);
     ui->statusBar->setStyleSheet("QStatusBar::item{border: 0px}");
 
