@@ -37,6 +37,7 @@ public:
     void addPoints(double x, double y, int type);
     void addPoints(const Point& p, int type);
     int getMaxFlow(int typeSource, int typeSink);
+    void onePersonCome();
     void initMaxFlow();
     vector<Line> report();
     virtual ~NetworkFlow();

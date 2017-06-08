@@ -86,8 +86,7 @@ void Kernel::reset()
 void Kernel::getMinCut() {
     qDebug() << "get_min called";
     NF->initMaxFlow();
-    qDebug() << "min1 " << NF->getMaxFlow(CIRCLE, TRIANGLE);
-    qDebug() << "min2 " << NF->getMaxFlow(CIRCLE, RECTANGLE);
-    qDebug() << "min3 " << NF->getMaxFlow(TRIANGLE, RECTANGLE);
+    for (int i = 0; i < 100; i++)
+        NF->onePersonCome();
     _lines =  NF->report();
 }

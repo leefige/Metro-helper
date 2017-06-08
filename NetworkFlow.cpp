@@ -36,6 +36,7 @@ void NetworkFlow::addPoints(const Point& p, int type) {
 }
 
 bool NetworkFlow::SPFA() {
+    int SINK = 1;
     bool *vis = new bool [size];
     memset(vis, 0, sizeof(bool) * size);
     for (int i = 0; i < size; i++) {
@@ -58,7 +59,7 @@ bool NetworkFlow::SPFA() {
             }
     }
     delete [] vis;
-    if (dist[size - 1] < INF) return 1;
+    if (dist[SINK] < INF) return 1;
     return 0;
 }
 
@@ -85,18 +86,19 @@ int NetworkFlow::DFS(int x, int a) {
 int NetworkFlow::getMaxFlow(int typeSource, int typeSink) {
     printf("GetMaxFlow\n");
 
-    int SINK = 1;
     dist = new double [size];
-    for (int i = 0; i < size; i++) {
-        if (types[i] == typeSource) {
-            flow[i][0] = int(MAX_D * 1.5);
-            flow[0][i] = int(MAX_D * 1.5);
-        }
-        if (types[i] == typeSink) {
-            flow[i][SINK] = 1000;
-            flow[SINK][i] = 1000;
-        }
+
+    int source = rand() % size;
+    while (types[source] != typeSource) {
+        source = rand() % size;
     }
+    int sink = rand() % size;
+    while (types[sink] != typeSink) {
+        sink = rand() % size;
+    }
+    flow[0][source] = 1;
+    flow[sink][1] = 1;
+
     int flow = 0;
     while (SPFA()) {
         flow += DFS(0, INF);
@@ -146,4 +148,13 @@ void NetworkFlow::initMaxFlow() {
     for (int i = 2; i < size - 1; i++)
         for (int j = 2; j < size - 1; j++)
             flow[i][j] = MAX_D;
+}
+
+void NetworkFlow::onePersonCome() {
+    int type1 = rand() % 3 + 2;
+    int type2 = rand() % 3 + 2;
+    while (type2 == type1) {
+        type2 = rand() % 3 + 2;
+    }
+    getMaxFlow(type1, type2);
 }
