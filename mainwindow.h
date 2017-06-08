@@ -27,7 +27,9 @@ private:
     QLabel *posLab;
     QHBoxLayout *mainLay;
     QVBoxLayout *rightLay;
+    QHBoxLayout *bottomLay;
     QSignalMapper *m;
+    QTimer * timer;
 
     float opacity;
 

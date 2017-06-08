@@ -3,6 +3,7 @@
 #include <QPoint>
 #include <QString>
 #include <QDebug>
+#include <QTimer>
 
 MainWindow::MainWindow(QWidget *parent) :
     QMainWindow(parent),
@@ -22,15 +23,23 @@ MainWindow::MainWindow(QWidget *parent) :
     pad = new DrawPad(this);
     mainLay = new QHBoxLayout(this);
     rightLay = new QVBoxLayout(this);
+    bottomLay = new QHBoxLayout(this);
 
     ui->statusBar->addWidget(posLab);
     ui->central->setLayout(mainLay);
     rightLay->addWidget(ui->typeBox);
     rightLay->addWidget(ui->setBox);
     rightLay->addWidget(ui->showBtn);
+    bottomLay->addWidget(ui->startBt);
+    bottomLay->addWidget(ui->stopBt);
+    rightLay->addLayout(bottomLay);
+
     rightLay->addStretch();
     mainLay->addWidget(pad, 10);
     mainLay->addLayout(rightLay, 1);
+
+    timer = new QTimer(this);
+    timer->setInterval(10);
 
     //map：转换信号类型
     m = new QSignalMapper(this);
@@ -47,6 +56,11 @@ MainWindow::MainWindow(QWidget *parent) :
     connect(pad, SIGNAL(mouseMov(QPoint)), this, SLOT(showMousePos(QPoint)));
     connect(ui->actionCS, SIGNAL(triggered(bool)), pad, SLOT(cleanScreen()));
     connect(ui->showBtn, SIGNAL(clicked(bool)), this, SLOT(showPath()));
+    connect(timer, SIGNAL(timeout()), pad, SLOT(mc()));
+    connect(ui->startBt, SIGNAL(clicked(bool)), timer, SLOT(start()));
+    connect(ui->startBt, SIGNAL(clicked(bool)), pad, SLOT(initMc()));
+    connect(ui->stopBt, SIGNAL(clicked(bool)), timer, SLOT(stop()));
+    connect(ui->stopBt, SIGNAL(clicked(bool)), pad, SLOT(stopMc()));
 }
 
 MainWindow::~MainWindow()

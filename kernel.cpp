@@ -84,9 +84,10 @@ void Kernel::reset()
 //------------------------------------------------------
 
 void Kernel::getMinCut() {
-    qDebug() << "get_min called";
-    NF->initMaxFlow();
-    for (int i = 0; i < 100; i++)
+    for(int i = 0; i < 10; i++)
         NF->onePersonCome();
+}
+
+void Kernel::stop_and_report(){
     _lines =  NF->report();
 }

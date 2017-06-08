@@ -23,8 +23,8 @@
    <widget class="QGroupBox" name="typeBox">
     <property name="geometry">
      <rect>
-      <x>310</x>
-      <y>80</y>
+      <x>320</x>
+      <y>0</y>
       <width>151</width>
       <height>161</height>
      </rect>
@@ -62,8 +62,8 @@
    <widget class="QGroupBox" name="setBox">
     <property name="geometry">
      <rect>
-      <x>290</x>
-      <y>260</y>
+      <x>300</x>
+      <y>180</y>
       <width>163</width>
       <height>62</height>
      </rect>
@@ -101,8 +101,8 @@
    <widget class="QPushButton" name="showBtn">
     <property name="geometry">
      <rect>
-      <x>370</x>
-      <y>330</y>
+      <x>380</x>
+      <y>250</y>
       <width>75</width>
       <height>23</height>
      </rect>
@@ -112,6 +112,32 @@
     </property>
     <property name="checkable">
      <bool>true</bool>
+    </property>
+   </widget>
+   <widget class="QPushButton" name="startBt">
+    <property name="geometry">
+     <rect>
+      <x>320</x>
+      <y>320</y>
+      <width>75</width>
+      <height>23</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>Start</string>
+    </property>
+   </widget>
+   <widget class="QPushButton" name="stopBt">
+    <property name="geometry">
+     <rect>
+      <x>410</x>
+      <y>320</y>
+      <width>75</width>
+      <height>23</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>Stop</string>
     </property>
    </widget>
   </widget>

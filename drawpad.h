@@ -33,6 +33,9 @@ public slots:
     void changeType(int st);
     void cleanScreen();
     void planPath();
+    void initMc();
+    void stopMc();
+    void mc();
 };
 
 #endif // DRAWPAD_H

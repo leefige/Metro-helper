@@ -138,3 +138,18 @@ void DrawPad::planPath()
     ker->getMinCut();
     update();
 }
+
+void DrawPad::mc()
+{
+    ker->getMinCut();
+}
+
+void DrawPad::initMc()
+{
+    ker->NF->initMaxFlow();
+}
+
+void DrawPad::stopMc()
+{
+    ker->stop_and_report();
+}

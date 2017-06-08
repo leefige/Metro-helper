@@ -22,16 +22,19 @@ public:
     const QVector<QPoint>& rects();
     vector<Line>& lineList();
     void getMinCut();
+    void stop_and_report();
 
     void changeType(station st);
     void reset();
+
+    NetworkFlow* NF;
 
 private:
     QVector<QPoint> _cirs;          //三种点
     QVector<QPoint> _tris;
     QVector<QPoint> _rects;
     vector<Line> _lines;
-    NetworkFlow* NF;
+
 
     void add(station st, QPoint pos); //暂时只有加
 
